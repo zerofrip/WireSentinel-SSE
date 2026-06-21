@@ -1,0 +1,13 @@
+[package]
+name = "dlp"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sse-core = { workspace = true }
+shared-types = { workspace = true }
+regex = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+parking_lot = { workspace = true }
