@@ -31,13 +31,21 @@ impl DlpEngine {
         self.policies.lock().push(policy);
     }
 
-    pub fn scan(&self, content: &str, channel: &str, user_id: Option<Uuid>) -> SseResult<Vec<DlpIncident>> {
+    pub fn scan(
+        &self,
+        content: &str,
+        channel: &str,
+        user_id: Option<Uuid>,
+    ) -> SseResult<Vec<DlpIncident>> {
         let patterns = detect_patterns(content);
         let policies = self.policies.lock().clone();
         let mut incidents = Vec::new();
 
         for pm in patterns {
-            for policy in policies.iter().filter(|p| p.enabled && policy_covers_channel(p, channel)) {
+            for policy in policies
+                .iter()
+                .filter(|p| p.enabled && policy_covers_channel(p, channel))
+            {
                 if policy.patterns.contains(&pm.kind) || policy.patterns.is_empty() {
                     let incident = DlpIncident {
                         id: Uuid::new_v4(),
@@ -100,9 +108,7 @@ mod tests {
         policy.action = DlpAction::Block;
         engine.add_policy(policy);
 
-        let incidents = engine
-            .scan("SSN: 123-45-6789", "email", None)
-            .unwrap();
+        let incidents = engine.scan("SSN: 123-45-6789", "email", None).unwrap();
         assert_eq!(incidents.len(), 1);
         assert_eq!(incidents[0].action, DlpAction::Block);
     }

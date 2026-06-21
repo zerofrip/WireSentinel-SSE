@@ -3,6 +3,4 @@
 mod error;
 
 pub use error::{SseError, SseResult};
-pub use shared_types::{
-    DlpAction, RiskLevel, SseSecurityPolicy, WebAccessAction,
-};
+pub use shared_types::{DlpAction, RiskLevel, SseSecurityPolicy, WebAccessAction};

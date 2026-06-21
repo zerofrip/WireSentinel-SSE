@@ -24,12 +24,7 @@ impl SsePluginManifest {
             version: version.into(),
             provider: provider.into(),
             description: None,
-            capabilities: vec![
-                "swg".into(),
-                "dlp".into(),
-                "casb".into(),
-                "threat".into(),
-            ],
+            capabilities: vec!["swg".into(), "dlp".into(), "casb".into(), "threat".into()],
         }
     }
 }

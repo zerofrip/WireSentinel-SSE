@@ -34,12 +34,10 @@ impl SiemIntegrationManager {
         format: SiemExportFormat,
         events: &[SecurityEventRecord],
     ) -> SseResult<SiemExportJob> {
-        let exporter = self
-            .exporters
-            .read()
-            .get(&kind)
-            .cloned()
-            .ok_or_else(|| sse_core::SseError::Siem(format!("exporter {kind:?} not registered")))?;
+        let exporter =
+            self.exporters.read().get(&kind).cloned().ok_or_else(|| {
+                sse_core::SseError::Siem(format!("exporter {kind:?} not registered"))
+            })?;
 
         let mut job = SiemExportJob {
             id: Uuid::new_v4(),

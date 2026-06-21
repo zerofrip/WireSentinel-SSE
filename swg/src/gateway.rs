@@ -3,9 +3,7 @@ use std::collections::HashMap;
 use chrono::Utc;
 use parking_lot::RwLock;
 
-use shared_types::{
-    DomainReputation, UrlCategory, WebAccessAction, WebAccessResult, WebPolicy,
-};
+use shared_types::{DomainReputation, UrlCategory, WebAccessAction, WebAccessResult, WebPolicy};
 use sse_core::SseResult;
 
 /// Secure Web Gateway — URL categorization, reputation, and policy enforcement.
@@ -112,10 +110,7 @@ fn extract_domain(url: &str) -> String {
 
 fn categories_match(a: &UrlCategory, b: &UrlCategory) -> bool {
     std::mem::discriminant(a) == std::mem::discriminant(b)
-        || matches!(
-            (a, b),
-            (UrlCategory::Custom(_), UrlCategory::Custom(_))
-        )
+        || matches!((a, b), (UrlCategory::Custom(_), UrlCategory::Custom(_)))
 }
 
 #[cfg(test)]

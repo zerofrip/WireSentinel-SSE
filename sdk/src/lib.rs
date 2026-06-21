@@ -5,6 +5,4 @@ mod plugin;
 
 pub use manifest::SsePluginManifest;
 pub use plugin::SsePlugin;
-pub use sse_core::{
-    DlpAction, RiskLevel, SseResult, SseSecurityPolicy, WebAccessAction,
-};
+pub use sse_core::{DlpAction, RiskLevel, SseResult, SseSecurityPolicy, WebAccessAction};

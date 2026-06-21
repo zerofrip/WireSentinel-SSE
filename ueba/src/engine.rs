@@ -22,9 +22,7 @@ impl UebaEngine {
     }
 
     pub fn establish_baseline(&self, baseline: BehaviorBaseline) {
-        self.baselines
-            .write()
-            .insert(baseline.subject_id, baseline);
+        self.baselines.write().insert(baseline.subject_id, baseline);
     }
 
     pub fn baseline(&self, subject_id: Uuid) -> Option<BehaviorBaseline> {

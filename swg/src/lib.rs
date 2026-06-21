@@ -3,4 +3,6 @@
 mod gateway;
 
 pub use gateway::SecureWebGateway;
-pub use shared_types::{DomainReputation, UrlCategory, WebAccessAction, WebAccessResult, WebPolicy};
+pub use shared_types::{
+    DomainReputation, UrlCategory, WebAccessAction, WebAccessResult, WebPolicy,
+};

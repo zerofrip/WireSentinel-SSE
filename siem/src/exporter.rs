@@ -5,14 +5,13 @@ use sse_core::SseResult;
 /// Format a security event for SIEM export.
 pub fn format_event(record: &SecurityEventRecord, format: SiemExportFormat) -> SseResult<String> {
     match format {
-        SiemExportFormat::Json => Ok(serde_json::to_string(record).map_err(|e| {
-            sse_core::SseError::Siem(e.to_string())
-        })?),
+        SiemExportFormat::Json => {
+            Ok(serde_json::to_string(record)
+                .map_err(|e| sse_core::SseError::Siem(e.to_string()))?)
+        }
         SiemExportFormat::Cef => Ok(format!(
             "CEF:0|WireSentinel|SSE|0.1|{}|{}|5|msg={}",
-            record.event_kind,
-            record.id,
-            record.payload
+            record.event_kind, record.id, record.payload
         )),
         SiemExportFormat::Leef => Ok(format!(
             "LEEF:2.0|WireSentinel|SSE|0.1|{}|id={}|kind={}",
@@ -100,5 +99,8 @@ macro_rules! stub_exporter {
 stub_exporter!(SplunkExporter, shared_types::SiemExporterKind::Splunk);
 stub_exporter!(SentinelExporter, shared_types::SiemExporterKind::Sentinel);
 stub_exporter!(ElasticExporter, shared_types::SiemExporterKind::Elastic);
-stub_exporter!(OpenSearchExporter, shared_types::SiemExporterKind::OpenSearch);
+stub_exporter!(
+    OpenSearchExporter,
+    shared_types::SiemExporterKind::OpenSearch
+);
 stub_exporter!(QRadarExporter, shared_types::SiemExporterKind::QRadar);

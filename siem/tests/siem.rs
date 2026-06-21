@@ -1,7 +1,7 @@
 use std::sync::Arc;
 
-use siem::{format_event, SiemExportFormat, SiemIntegrationManager, SyslogExporter};
 use shared_types::SecurityEventRecord;
+use siem::{format_event, SiemExportFormat, SiemIntegrationManager, SyslogExporter};
 use uuid::Uuid;
 
 #[test]

@@ -111,9 +111,7 @@ mod tests {
     #[test]
     fn computes_weighted_score() {
         let engine = ContinuousRiskEngine::new(75);
-        let score = engine
-            .compute(Uuid::new_v4(), 80, 90, 70, 60)
-            .unwrap();
+        let score = engine.compute(Uuid::new_v4(), 80, 90, 70, 60).unwrap();
         assert_eq!(score.score, 75);
         assert_eq!(score.level, RiskLevel::High);
     }

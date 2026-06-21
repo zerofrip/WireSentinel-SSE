@@ -10,9 +10,7 @@ fn telemetry_payload_roundtrip() {
 
 #[test]
 fn bundle_dto_from_sample() {
-    let dto = SseIncidentBundleDto::from_bundle(
-        sample_incident_bundle(Uuid::new_v4()),
-        Uuid::new_v4(),
-    );
+    let dto =
+        SseIncidentBundleDto::from_bundle(sample_incident_bundle(Uuid::new_v4()), Uuid::new_v4());
     assert!(dto.received_at <= chrono::Utc::now());
 }

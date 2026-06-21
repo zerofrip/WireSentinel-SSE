@@ -46,10 +46,7 @@ impl SecurityDataLake {
     pub fn purge_expired(&self) {
         let cutoff = Utc::now() - Duration::days(self.retention.days() as i64);
         let mut events = self.events.lock();
-        while events
-            .front()
-            .is_some_and(|e| e.ingested_at < cutoff)
-        {
+        while events.front().is_some_and(|e| e.ingested_at < cutoff) {
             events.pop_front();
         }
     }
