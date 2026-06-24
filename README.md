@@ -26,3 +26,7 @@ cargo test --workspace
 ```
 
 Requires `WireSentinel/shared-types` as a sibling repository.
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE).
